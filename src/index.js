@@ -9,6 +9,7 @@ import Signup from './page/SignUp';
 import Home from './page/Home';
 import { store } from './redux';
 import { Provider } from 'react-redux';
+import Login from './page/login';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -18,6 +19,8 @@ const router= createBrowserRouter(
      <Route index element={<Home />} />
       
         <Route path="signup" element={<Signup />} />
+        <Route path="login" element={<Login />} />
+
     </Route>
   )
 )
