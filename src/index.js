@@ -10,6 +10,7 @@ import Home from './page/Home';
 import { store } from './redux';
 import { Provider } from 'react-redux';
 import Login from './page/login';
+import Newproduct from './page/newProducts';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -17,7 +18,7 @@ const router= createBrowserRouter(
   createRoutesFromElements(
     <Route path = '/' element ={<App/>}>
      <Route index element={<Home />} />
-      
+     <Route path="newproduct" element={<Newproduct />} />
         <Route path="signup" element={<Signup />} />
         <Route path="login" element={<Login />} />
 
