@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { GrPrevious, GrNext } from "react-icons/gr";
-
+import HomeCard from "../Component/HomeCard";
+import CardFeature from "../Component/CardFeature";
 
 
 
@@ -63,10 +64,19 @@ const Home = () => {
         <div className="md:w-1/2 flex flex-wrap gap-5 p-4 justify-center">
           {homeProductCartList[0]
             ? homeProductCartList.map((el) => {
-                return
+                return (
+                    <HomeCard
+                      key={el._id}
+                      id={el._id}
+                      image={el.image}
+                      name={el.name}
+                      price={el.price}
+                      category={el.category}
+                    />
+                  );
               })
               : loadingArray.map((el, index) => {
-                return ;
+                return <HomeCard key={index+"loading"} loading={"Loading..."} />;
               })}
         </div>
       </div>
@@ -97,12 +107,20 @@ const Home = () => {
         >
           {homeProductCartListVegetables[0]
             ? homeProductCartListVegetables.map((el) => {
-               
-                return 
+                return (
+                  <CardFeature
+                    key={el._id+"vegetable"}
+                    id={el._id}
+                    name={el.name}
+                    category={el.category}
+                    price={el.price}
+                    image={el.image}
+                  />
+                );
               })
-              : loadingArray.map((el, index) => {
-                return ;
-              })}
+            : loadingArrayFeature.map((el,index) => (
+                <CardFeature loading="Loading..." key={index+"cartLoading"} />
+              ))}
         </div>
       </div>
       
