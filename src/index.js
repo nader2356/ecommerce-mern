@@ -11,6 +11,7 @@ import { store } from './redux';
 import { Provider } from 'react-redux';
 import Login from './page/login';
 import Newproduct from './page/newProducts';
+import Cart from './page/Cart';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -19,6 +20,7 @@ const router= createBrowserRouter(
     <Route path = '/' element ={<App/>}>
      <Route index element={<Home />} />
      <Route path="newproduct" element={<Newproduct />} />
+     <Route path="cart" element={<Cart />} />
         <Route path="signup" element={<Signup />} />
         <Route path="login" element={<Login />} />
 

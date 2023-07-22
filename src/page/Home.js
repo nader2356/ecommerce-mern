@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { GrPrevious, GrNext } from "react-icons/gr";
 import HomeCard from "../Component/HomeCard";
 import CardFeature from "../Component/CardFeature";
+import AllProduct from "../Component/AllProduct";
 
 
 
@@ -123,8 +124,7 @@ const Home = () => {
               ))}
         </div>
       </div>
-      
-     
+      <AllProduct heading={"Your Product"}/>
     </div>
   );
 };

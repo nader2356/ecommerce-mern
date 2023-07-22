@@ -4,7 +4,7 @@ import Header from './Component/Header';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { setDataProduct } from './redux/productSlice ';
+import { setDataProduct } from './redux/productSlice';
 
 function App() {
 
@@ -21,7 +21,7 @@ function App() {
         
       })
       const resData = await res.json()
-      console.log(resData)
+     
       dispatch(setDataProduct(resData))
     })()
   },[])
