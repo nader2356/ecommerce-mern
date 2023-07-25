@@ -100,6 +100,17 @@ mongoose
     res.send(JSON.stringify(data))
   })
 
+  app.post("/uploadProduct",async(req,res)=>{
+    try {
+      // console.log(req.body)
+      const data = await productModel(req.body)
+      const datasave = await data.save()
+      res.send({message : "Upload successfully"})
+    }
+    catch (error) { console.log(error) }
+    
+  })
+
 
 //server is ruuning
 app.listen(PORT, () => console.log("server is running at port : " + PORT));
