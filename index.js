@@ -34,7 +34,23 @@ mongoose
   //
   const userModel = mongoose.model("user", userSchema);
   
+  app.post("/signup", async (req, res) => {
+    // console.log(req.body);
+  
 
+    try {
+      let user = await userModel.findOne({ email: req.body.email }); // missing exec()
+
+      if (user) {
+        res.send({ message: "Email id is already register", alert: false });
+      } else {
+        const data = userModel(req.body);
+        const save = data.save();
+        res.send({ message: "Successfully sign up", alert: true });
+      }
+  }
+  catch (error) { console.log(error) }
+  });
 
 
 //server is ruuning
