@@ -12,6 +12,8 @@ import { Provider } from 'react-redux';
 import Login from './page/login';
 import Newproduct from './page/newProducts';
 import Cart from './page/Cart';
+import Success from './page/Success';
+import Cancel from './page/Cancel';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -23,6 +25,8 @@ const router= createBrowserRouter(
      <Route path="cart" element={<Cart />} />
         <Route path="signup" element={<Signup />} />
         <Route path="login" element={<Login />} />
+        <Route path="success" element={<Success/>}/>
+      <Route path="cancel" element={<Cancel/>}/>
 
     </Route>
   )

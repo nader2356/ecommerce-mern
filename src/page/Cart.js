@@ -5,9 +5,14 @@ import emptyCartImage from "../assest/empty.gif"
 import { toast } from "react-hot-toast";
 
 import { useNavigate } from "react-router-dom";
+import CartProduct from "../Component/CartProduct";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
 
 const Cart = () => {
   const productCartItem = useSelector((state) => state.product.cartItem);
+
+  console.log(productCartItem)
   const user = useSelector(state => state.user)
   const navigate = useNavigate()
 
@@ -22,33 +27,35 @@ const Cart = () => {
 
   
   
+   
   const handlePayment = async()=>{
 
-      if(user.email){
- 
-          const res = await fetch(`${process.env.REACT_APP_SERVER_DOMIN}/create-checkout-session`,{
-            method : "POST",
-            headers  : {
-              "content-type" : "application/json"
-            },
-            body  : JSON.stringify(productCartItem)
-          })
-          if(res.statusCode === 500) return;
+    if(user.email){
+        
+        const stripePromise = await loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
+        const res = await fetch("http://localhost:8080/create-checkout-session",{
+          method : "POST",
+          headers  : {
+            "content-type" : "application/json"
+          },
+          body  : JSON.stringify(productCartItem)
+        })
+        if(res.statusCode === 500) return;
 
-          const data = await res.json()
-          console.log(data)
+        const data = await res.json()
+        console.log(data)
 
-          toast("Redirect to payment Gateway...!")
-          
-      }
-      else{
-        toast("You have not Login!")
-        setTimeout(()=>{
-          navigate("/login")
-        },1000)
-      }
-    
-  }
+        toast("Redirect to payment Gateway...!")
+        stripePromise.redirectToCheckout({sessionId : data}) 
+    }
+    else{
+      toast("You have not Login!")
+      setTimeout(()=>{
+        navigate("/login")
+      },1000)
+    }
+  
+}
   return (
     <>
     
@@ -61,7 +68,20 @@ const Cart = () => {
         <div className="my-4 flex gap-3">
           {/* display cart items  */}
           <div className="w-full max-w-3xl ">
-         
+          {productCartItem.map((el) => {
+              return (
+                <CartProduct
+                  key={el._id}
+                  id={el._id}
+                  name={el.name}
+                  image={el.image}
+                  category={el.category}
+                  qty={el.qty}
+                  total={el.total}
+                  price={el.price}
+                />
+              );
+            })}
               
           </div>
 

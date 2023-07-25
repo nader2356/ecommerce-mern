@@ -11,6 +11,9 @@ import AllProduct from "../Component/AllProduct";
 
 const Home = () => {
   const productData = useSelector((state) => state.product.productList);
+
+
+  console.log(productData)
   const homeProductCartList = productData.slice(1, 5);
   const homeProductCartListVegetables = productData.filter(
     (el) => el.category === "vegetable",
