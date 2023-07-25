@@ -85,6 +85,15 @@ mongoose
   catch (error) { console.log(error) }
   });
 
+  const schemaProduct = mongoose.Schema({
+    name: String,
+    category:String,
+    image: String,
+    price: String,
+    description: String,
+  });
+  const productModel = mongoose.model("product",schemaProduct)
+
 
 //server is ruuning
 app.listen(PORT, () => console.log("server is running at port : " + PORT));
