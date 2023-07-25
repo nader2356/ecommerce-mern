@@ -14,6 +14,7 @@ import Newproduct from './page/newProducts';
 import Cart from './page/Cart';
 import Success from './page/Success';
 import Cancel from './page/Cancel';
+import Menu from './page/Menu';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -26,6 +27,7 @@ const router= createBrowserRouter(
         <Route path="signup" element={<Signup />} />
         <Route path="login" element={<Login />} />
         <Route path="success" element={<Success/>}/>
+        <Route path="menu/:filterby" element={<Menu />} />
       <Route path="cancel" element={<Cancel/>}/>
 
     </Route>
