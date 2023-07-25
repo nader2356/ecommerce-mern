@@ -95,5 +95,11 @@ mongoose
   const productModel = mongoose.model("product",schemaProduct)
 
 
+  app.get("/product",async(req,res)=>{
+    const data = await productModel.find({})
+    res.send(JSON.stringify(data))
+  })
+
+
 //server is ruuning
 app.listen(PORT, () => console.log("server is running at port : " + PORT));
