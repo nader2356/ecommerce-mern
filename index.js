@@ -52,6 +52,39 @@ mongoose
   catch (error) { console.log(error) }
   });
 
+  app.post("/signin", async (req, res) => {
+ 
+
+  
+    try {
+     let user =   await userModel.findOne({ email: req.body.email });
+     
+        if (user) {
+          console.log(user)
+          const dataSend = {
+            _id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            image: user.image,
+          };
+          console.log(dataSend);
+          res.send({
+            message: "Login is successfully",
+            alert: true,
+            data: dataSend,
+          });
+        } else {
+          res.send({
+            message: "Email is not available, please sign up",
+            alert: false,
+          });
+        }
+     
+  }
+  catch (error) { console.log(error) }
+  });
+
 
 //server is ruuning
 app.listen(PORT, () => console.log("server is running at port : " + PORT));
